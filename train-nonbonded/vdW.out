@@ -1,0 +1,1011 @@
+OE_LICENSE is set to: /projects/juho8819/oe_license.txt
+Checking CUDA devices...
+Mon Sep 21 10:36:29 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 550.90.07              Driver Version: 550.90.07      CUDA Version: 12.4     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A40                     On  |   00000000:17:00.0 Off |                    0 |
+|  0%   26C    P8             21W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+#======================================================================#
+#| [1m            Welcome to ForceBalance version 1.9.6! =D             [0m |#
+#| [1m                 Force Field Optimization System                  [0m |#
+#| [1m                                                                  [0m |#
+#| [1m                             Authors:                             [0m |#
+#| [1m                          Lee-Ping Wang                           [0m |#
+#| [1m                  Yudong Qiu, Keri A. McKiernan                   [0m |#
+#| [1m          Jeffrey R. Wagner, Hyesu Jang, Simon Boothroyd          [0m |#
+#| [1m          Arthur Vigil, Erik G. Brandt, John Stoppelman           [0m |#
+#| [1m                  Johnny Israeli, Matt Thompson                   [0m |#
+#======================================================================#
+
+                          [44m     [0m                                        
+                       [44m        [0m      [43m     [0m                              
+                    [44m        [0m   [44m  [0m    [43m         [0m                          
+                 [44m       [0m    [44m      [0m      [43m         [0m                       
+             [44m        [0m    [44m        [0m          [43m         [0m                    
+          [44m        [0m    [44m        [0m                 [43m        [0m                 
+       [44m        [0m    [44m       [0m                        [43m        [0m              
+    [44m        [0m   [44m        [0m                              [43m         [0m          
+   [44m      [0m   [44m        [0m               `.:+@@###@'          [43m         [0m       
+    [44m [0m    [44m        [0m          ,;'+###############.             [43m     [0m       
+      [44m        [0m         +################':`                    [43m [0m        
+      [44m     [0m              `.,,...####+.                                  
+                                ,#####      +##.               [44m   [0m   [44m   [0m
+ [43m    [0m                            #####      ######             [44m   [0m   [44m   [0m
+ [43m    [0m                ###'        ####'     :#####'             [44m   [0m   [44m   [0m
+ [43m    [0m                :####@      ####.    ,####'               [44m   [0m   [44m   [0m
+ [43m    [0m                 ######     ####    +###+                 [44m   [0m   [44m   [0m
+ [43m    [0m                  #####     ####   ###;                   [44m   [0m   [44m   [0m
+ [43m    [0m                   :##      ####  ++`                     [44m   [0m   [44m   [0m
+ [43m    [0m                            ####``..:;+##############+`   [44m   [0m   [44m   [0m
+ [43m    [0m             .,:;;'++##################################`  [44m   [0m   [44m   [0m
+ [43m    [0m    `############################++++''';;;;;;;;;;;'';    [44m   [0m   [44m   [0m
+ [43m    [0m      ,########':,.``       ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+ [43m    [0m                            ####                          [44m   [0m   [44m   [0m
+      [44m    [0m                       ####                                   
+     [44m        [0m                    ####                                   
+    [44m [0m    [44m       [0m                 ####                       [43m     [0m       
+   [44m     [0m    [44m        [0m             ####                    [43m        [0m       
+   [44m        [0m    [44m        [0m          ###                  [43m         [0m         
+      [44m        [0m    [44m        [0m        +`               [43m        [0m             
+          [44m        [0m   [44m        [0m                   [43m        [0m                
+             [44m        [0m   [44m         [0m           [43m         [0m                   
+                [44m        [0m    [44m       [0m      [43m         [0m                      
+                   [44m        [0m    [44m   [0m    [43m        [0m                          
+                      [44m        [0m       [43m      [0m                             
+                          [44m      [0m      [43m  [0m                                
+                             [44m  [0m                                         
+
+Reading options from file: optimize.in
+#========================================================#
+#| [95m  Options at their default values are not printed   [0m |#
+#| [95m        Use 'verbose_options True' to Enable        [0m |#
+#========================================================#
+Reading force field from file: force_field_tagged.offxml
+#=========================================================#
+#| [92m Starting parameter indices, physical values and IDs [0m |#
+#=========================================================#
+   0 [  1.3366e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4951e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  1.8920e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.4360e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.5975e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4791e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0332e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.9582e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.2057e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.9014e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2456e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7019e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.5326e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.7024e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+-----------------------------------------------------------
+#=========================================================#
+#| [91m Rescaling Factors by Type (Lower Takes Precedence): [0m |#
+#=========================================================#
+   vdW/Atom/epsilon                     : 1.00000e-01
+   vdW/Atom/rmin_half                   : 1.00000e+00
+-----------------------------------------------------------
+#========================================================#
+#| [91m   Rescaling Types / Factors by Parameter Number:   [0m |#
+#========================================================#
+   0 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [    vdW/Atom/epsilon              : 1.00000e-01 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [    vdW/Atom/rmin_half            : 1.00000e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [92m               Setup for force field                [0m |#
+#========================================================#
+fnms                      ['force_field_tagged.offxml'] 
+priors                    OrderedDict([('vdW/Atom/epsilon', 0.1), ('vdW/Atom/rmin_half', 1.0)]) 
+----------------------------------------------------------
+targets/pure_data/options.json
+#========================================================#
+#| [92m             Loaded experimental data.              [0m |#
+#========================================================#
+#========================================================#
+#| [92m    Reference C/C=C\CCCC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 702.8 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 36.25957811 kilojoule / mole+/-0.14966118 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m      Reference CCCCCC{solv}{x=1.000000} data       [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 654.9199999999998 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 31.52 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference CCCCCCCC{solv}{x=1.000000} data      [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 698.6199999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 41.56 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference COC(C)=O{solv}{x=1.000000} data      [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 934.1999999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 32.29 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m    Reference CCCCCCCCCCC{solv}{x=1.000000} data    [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 736.8999999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 56.58 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m      Reference CCCCCCC{solv}{x=1.000000} data      [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 679.7499999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 36.57 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m       Reference CCCCC{solv}{x=1.000000} data       [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 621.14 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 26.42 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m    Reference CCCCCCCCCC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 726.275 kilogram / meter ** 3+/-0.10606601717796998 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 51.42 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference CCCCCCCCC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 713.8999999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 46.55 kilojoule / mole+/-0.0 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference CC/C=C\CC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 675.2199999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 31.22929956 kilojoule / mole+/-0.04988706 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference C/C=C\CCC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 682.52 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 32.19378272 kilojoule / mole+/-0.26606432 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m     Reference C/C=C\CC{solv}{x=1.000000} data      [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 651.0 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 26.86418181 kilojoule / mole+/-0.0831451 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m    Reference CC/C=C\CCC{solv}{x=1.000000} data     [0m |#
+#========================================================#
+Density 298.15 kelvin-1.0 standard_atmosphere 698.4999999999999 kilogram / meter ** 3+/-0.0 kilogram / meter ** 3 
+EnthalpyOfVaporization 298.15 kelvin-1.0 standard_atmosphere 35.81059457 kilojoule / mole+/-0.06651608 kilojoule / mole 
+----------------------------------------------------------
+#========================================================#
+#| [92m            Setup for target pure_data :            [0m |#
+#========================================================#
+name                      pure_data 
+type                      EVALUATOR_SMIRNOFF 
+tgtdir                    targets/pure_data 
+evaluator_input           options.json 
+----------------------------------------------------------
+#========================================================#
+#| [92m        SMIRNOFF Parameter Coverage Analysis        [0m |#
+#========================================================#
+Force field assignment data written to /gpfs/alpine1/scratch/juho8819/OpenFFLipidPaper/FFTraining/train-vdw/openff_unconstrained-2.3.0-internal-alkanes/smirnoff_parameter_assignments.json
+ idx Parameter                                                                                                   Count
+----------------------------------------------------------------------------------------------------------------------
+   0 vdW/Atom/epsilon/[#1:1]-[#6X4]                                                                       :          0
+   1 vdW/Atom/rmin_half/[#1:1]-[#6X4]                                                                     :          0
+   2 vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]                                                :          0
+   3 vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]                                              :          0
+   4 vdW/Atom/epsilon/[#1:1]-[#6X3]                                                                       :          0
+   5 vdW/Atom/rmin_half/[#1:1]-[#6X3]                                                                     :          0
+   6 vdW/Atom/epsilon/[#6:1]                                                                              :          0
+   7 vdW/Atom/rmin_half/[#6:1]                                                                            :          0
+   8 vdW/Atom/epsilon/[#6X4:1]                                                                            :          0
+   9 vdW/Atom/rmin_half/[#6X4:1]                                                                          :          0
+  10 vdW/Atom/epsilon/[#8:1]                                                                              :          0
+  11 vdW/Atom/rmin_half/[#8:1]                                                                            :          0
+  12 vdW/Atom/epsilon/[#8X2H0+0:1]                                                                        :          0
+  13 vdW/Atom/rmin_half/[#8X2H0+0:1]                                                                      :          0
+SMIRNOFF Parameter Coverage Analysis result: 0/14 parameters are covered.
+----------------------------------------------------------------------------------------------------------------------
+Using parabolic regularization (Gaussian prior) with strength 1.0e+00 (+), 0.0e+00 (x)
+#========================================================#
+#| [92m           Setup for objective function :           [0m |#
+#========================================================#
+penalty_additive          1.0 
+normalize_weights         False 
+----------------------------------------------------------
+#========================================================#
+#| [92m                Setup for optimizer                 [0m |#
+#========================================================#
+jobtype                   OPTIMIZE 
+mintrust                  0.01 
+eps                       0.01 
+convergence_objective     0.01 
+convergence_step          0.01 
+convergence_gradient      0.1 
+adapt_fac                 0.2 
+adapt_damp                1.0 
+print_hess                True 
+err_tol                   1.0 
+input_file                optimize.in 
+----------------------------------------------------------
+Calculation started at 2026-09-21 10:39 AM
+#========================================================#
+#| [1m                  Main Optimizer                    [0m |#
+#| [1m   Newton-Raphson Method (Adaptive Trust Radius)    [0m |#
+#| [1m                                                    [0m |#
+#| [1m       [0mConvergence criteria (1 of 3 needed):        [0m |#
+#| [1m          [0mObjective Function  : 1.000e-02           [0m |#
+#| [1m          [0mNorm of Gradient    : 1.000e-01           [0m |#
+#| [1m          [0mParameter step size : 1.000e-02           [0m |#
+#========================================================#
+#========================================================#
+#|       Color Key for Objective Function -=X2=-        |#
+#|  [1mBold[0m = Initial step                                 |#
+#|  [92mGreen = Current lowest value of objective function[0m  |#
+#|  [91mRed = Objective function rises, step rejected[0m       |#
+#|  [0mNo color = Not at the lowest value                  |#
+#========================================================#
+#========================================================#
+#| [94m     Iteration 0: Evaluating objective function     [0m |#
+#| [94m        and derivatives through second order        [0m |#
+#========================================================#
+Requesting the estimation of 26 properties, and their gradients with respect to 14 parameters.
+
+26 properties were estimated using the SimulationLayer layer.
+
+
+#=============================================================================================================#
+#| [1;94m                                    pure_data EnthalpyOfVaporization                                     [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}    36.260         38.910 +- 0.230     2.650   0.07692   3.00000   0.06004  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}    32.194         33.124 +- 0.219     0.930   0.07692   3.00000   0.00740  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}    26.864         27.925 +- 0.192     1.061   0.07692   3.00000   0.00962  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}    35.811         38.410 +- 0.354     2.599   0.07692   3.00000   0.05775  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}    31.229         32.920 +- 0.311     1.691   0.07692   3.00000   0.02443  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}    56.580         64.888 +- 0.460     8.308   0.07692   3.00000   0.58988  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}    51.420         58.587 +- 0.406     7.167   0.07692   3.00000   0.43898  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}    46.550         52.170 +- 0.455     5.620   0.07692   3.00000   0.26992  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}    41.560         46.453 +- 0.399     4.893   0.07692   3.00000   0.20459  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}    36.570         40.625 +- 0.385     4.055   0.07692   3.00000   0.14057  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}    31.520         34.102 +- 0.326     2.582   0.07692   3.00000   0.05700  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}    26.420         28.045 +- 0.307     1.625   0.07692   3.00000   0.02258  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}    32.290         40.425 +- 0.162     8.135   0.07692   3.00000   0.56564  
+---------------------------------------------------------------------------------------------------------------
+
+#=============================================================================================================#
+#| [1;94m                                            pure_data Density                                            [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}   702.800        690.125 +- 0.188   -12.675   0.07692  30.00000   0.01373  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}   682.520        664.541 +- 0.232   -17.979   0.07692  30.00000   0.02763  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}   651.000        630.503 +- 0.276   -20.497   0.07692  30.00000   0.03591  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}   698.500        688.543 +- 0.222    -9.957   0.07692  30.00000   0.00847  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}   675.220        663.672 +- 0.218   -11.548   0.07692  30.00000   0.01140  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}   736.900        737.564 +- 0.194     0.664   0.07692  30.00000   0.00004  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}   726.275        726.368 +- 0.197     0.093   0.07692  30.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}   713.900        712.036 +- 0.178    -1.864   0.07692  30.00000   0.00030  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}   698.620        695.613 +- 0.177    -3.007   0.07692  30.00000   0.00077  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}   679.750        675.109 +- 0.194    -4.641   0.07692  30.00000   0.00184  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}   654.920        647.691 +- 0.255    -7.229   0.07692  30.00000   0.00447  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}   621.140        610.656 +- 0.285   -10.484   0.07692  30.00000   0.00939  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}   934.200        932.653 +- 0.261    -1.547   0.07692  30.00000   0.00020  
+---------------------------------------------------------------------------------------------------------------
+#====================================================================#
+#| [94m                  Objective Function Breakdown                  [0m |#
+#| [94m  Target Name              Residual  x  Weight  =  Contribution [0m |#
+#====================================================================#
+pure_data                      2.56256      1.000 [94m     2.56256e+00[0m 
+Regularization                 0.00000      1.000 [94m     0.00000e+00[0m 
+Total                                             [94m     2.56256e+00[0m 
+----------------------------------------------------------------------
+
+  Step       |k|        |dk|       |grad|       -=X2=-     Delta(X2)    StepQual
+     0   0.000e+00   0.000e+00   1.360e+02[1m   2.56256e+00[0m   0.000e+00      0.000
+
+#========================================================#
+#| [94m                   Total Gradient                   [0m |#
+#========================================================#
+   0 [  9.79294980e+01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -1.71478502e+01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  3.10674961e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [ -4.25882089e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.39710618e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  6.09086982e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.71254670e+00 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  4.20252325e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  3.14311550e+01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  8.70762144e+01 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  3.74630309e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [ -6.13708472e-01 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  6.62516493e-01 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  6.58880244e-01 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [94m                   Total Hessian                    [0m |#
+#========================================================#
+ 3.08355021e+03 -1.06815180e+03  1.05961532e+01 -3.79997388e+00  1.27577872e+02 -5.07566139e+01  1.13606633e+02  1.78034209e+02  1.03353115e+03  2.64864238e+03  1.32284875e+00 -3.98086433e+00  2.43274859e+00  1.90248391e+00 
+-1.06815180e+03  9.75589608e+02 -4.39098880e+00  1.93535827e+01 -4.77558322e+01  4.75432372e+01 -5.39277007e+01 -5.25531139e+01 -4.57767494e+02 -9.67342865e+02 -8.89772322e-01  1.59466682e+01 -2.31922941e+00  1.82269290e+00 
+ 1.05961532e+01 -4.39098880e+00  1.08266744e+01 -3.65987689e+00  0.00000000e+00  0.00000000e+00  2.82188979e+00  5.04647564e+00  5.22011560e+00  7.12822545e+00  1.11144324e+00 -3.71372135e+00  2.06296257e+00  1.51216354e+00 
+-3.79997388e+00  1.93535827e+01 -3.65987689e+00  2.29809265e+01  0.00000000e+00  0.00000000e+00 -3.29784901e+00 -2.70230957e+00 -5.83288990e+00  4.43625010e+00 -8.34802737e-01  1.71914786e+01 -2.29071937e+00  2.23146392e+00 
+ 1.27577872e+02 -4.77558322e+01  0.00000000e+00  0.00000000e+00  2.50502502e+01 -9.31337514e+00  2.00033373e+01  3.05891147e+01  3.84378672e+01  8.13303515e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+-5.07566139e+01  4.75432372e+01  0.00000000e+00  0.00000000e+00 -9.31337514e+00  1.13494734e+01 -9.94243157e+00 -1.01665086e+01 -1.95363816e+01 -3.26635935e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+ 1.13606633e+02 -5.39277007e+01  2.82188979e+00 -3.29784901e+00  2.00033373e+01 -9.94243157e+00  2.11344537e+01  2.75822654e+01  3.66656699e+01  7.18383666e+01  3.96210402e-01 -2.89835088e+00  8.16443978e-01  1.70944829e-01 
+ 1.78034209e+02 -5.25531139e+01  5.04647564e+00 -2.70230957e+00  3.05891147e+01 -1.01665086e+01  2.75822654e+01  4.72602820e+01  5.27712225e+01  1.13989235e+02  6.47162761e-01 -2.61365957e+00  1.22443131e+00  7.74985038e-01 
+ 1.03353115e+03 -4.57767494e+02  5.22011560e+00 -5.83288990e+00  3.84378672e+01 -1.95363816e+01  3.66656699e+01  5.27712225e+01  3.67305562e+02  9.07860555e+02  7.27792689e-01 -5.14629671e+00  1.49057065e+00  3.55538218e-01 
+ 2.64864238e+03 -9.67342865e+02  7.12822545e+00  4.43625010e+00  8.13303515e+01 -3.26635935e+01  7.18383666e+01  1.13989235e+02  9.07860555e+02  2.36723412e+03  7.55554403e-01  2.94511649e+00  1.12088512e+00  2.30678826e+00 
+ 1.32284875e+00 -8.89772322e-01  1.11144324e+00 -8.34802737e-01  0.00000000e+00  0.00000000e+00  3.96210402e-01  6.47162761e-01  7.27792689e-01  7.55554403e-01  2.14713639e+00 -7.68346070e-01  2.87343057e-01  1.35489154e-01 
+-3.98086433e+00  1.59466682e+01 -3.71372135e+00  1.71914786e+01  0.00000000e+00  0.00000000e+00 -2.89835088e+00 -2.61365957e+00 -5.14629671e+00  2.94511649e+00 -7.68346070e-01  1.61488691e+01 -2.02220310e+00  1.66242869e+00 
+ 2.43274859e+00 -2.31922941e+00  2.06296257e+00 -2.29071937e+00  0.00000000e+00  0.00000000e+00  8.16443978e-01  1.22443131e+00  1.49057065e+00  1.12088512e+00  2.87343057e-01 -2.02220310e+00  2.58800323e+00  1.42622930e-01 
+ 1.90248391e+00  1.82269290e+00  1.51216354e+00  2.23146392e+00  0.00000000e+00  0.00000000e+00  1.70944829e-01  7.74985038e-01  3.55538218e-01  2.30678826e+00  1.35489154e-01  1.66242869e+00  1.42622930e-01  2.67886440e+00 
+----------------------------------------------------------
+Calculating nonlinear optimization step
+Finding trust radius: H+0.0000*I, length 2.7053e-01 (target 1.0000e-01)
+Finding trust radius: H+9.0000*I, length 1.5897e-01 (target 1.0000e-01)
+Finding trust radius: H+61.6869*I, length 6.4484e-02 (target 1.0000e-01)
+Finding trust radius: H+31.9113*I, length 8.9342e-02 (target 1.0000e-01)
+Finding trust radius: H+21.5034*I, length 1.0879e-01 (target 1.0000e-01)
+Finding trust radius: H+16.0948*I, length 1.2480e-01 (target 1.0000e-01)
+Finding trust radius: H+26.1156*I, length 9.8828e-02 (target 1.0000e-01)
+Finding trust radius: H+25.9481*I, length 9.9146e-02 (target 1.0000e-01)
+Finding trust radius: H+25.5754*I, length 9.9865e-02 (target 1.0000e-01)
+Finding trust radius: H+25.5001*I, length 1.0001e-01 (target 1.0000e-01)
+Finding trust radius: H+25.5057*I, length 1.0000e-01 (target 1.0000e-01)
+Finding trust radius: H+25.5062*I, length 1.0000e-01 (target 1.0000e-01)
+Finding trust radius: H+25.5061*I, length 1.0000e-01 (target 1.0000e-01)
+Finding trust radius: H+25.5063*I, length 1.0000e-01 (target 1.0000e-01)
+Trust-radius step found (length 1.0000e-01),  2.5506e+01 added to Hessian diagonal
+#========================================================#
+#| [95m  Mathematical Parameters (Current + Step = Next)   [0m |#
+#========================================================#
+   0 [  0.0000e+00 - 1.1447e-02 = -1.1447e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  0.0000e+00 - 3.1266e-02 = -3.1266e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  0.0000e+00 - 7.3103e-02 = -7.3103e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  0.0000e+00 + 1.0236e-02 =  1.0236e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  0.0000e+00 + 2.9992e-02 =  2.9992e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  0.0000e+00 - 2.0161e-02 = -2.0161e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  0.0000e+00 + 7.8031e-03 =  7.8031e-03 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  0.0000e+00 - 2.8227e-03 = -2.8227e-03 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  0.0000e+00 - 1.9758e-02 = -1.9758e-02 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  0.0000e+00 - 3.0053e-02 = -3.0053e-02 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  0.0000e+00 - 8.8193e-03 = -8.8193e-03 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  0.0000e+00 + 1.4613e-02 =  1.4613e-02 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  0.0000e+00 - 1.5605e-02 = -1.5605e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  0.0000e+00 - 1.5472e-02 = -1.5472e-02 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [95m    Physical Parameters (Current + Step = Next)     [0m |#
+#========================================================#
+   0 [  1.3366e-02 - 1.1447e-03 =  1.2222e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4951e+00 - 3.1266e-02 =  1.4638e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  1.8920e-02 - 7.3103e-03 =  1.1610e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.4360e+00 + 1.0236e-02 =  1.4462e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.5975e-02 + 2.9992e-03 =  1.8975e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4791e+00 - 2.0161e-02 =  1.4589e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0332e-01 + 7.8031e-04 =  1.0410e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.9582e+00 - 2.8227e-03 =  1.9553e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.2057e-01 - 1.9758e-03 =  1.1859e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.9014e+00 - 3.0053e-02 =  1.8714e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2456e-01 - 8.8193e-04 =  2.2368e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7019e+00 + 1.4613e-02 =  1.7165e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.5326e-02 - 1.5605e-03 =  8.3765e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.7024e+00 - 1.5472e-02 =  1.6870e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+Input file with saved parameters: optimize.sav
+#========================================================#
+#| [94m     Iteration 1: Evaluating objective function     [0m |#
+#| [94m        and derivatives through second order        [0m |#
+#========================================================#
+Requesting the estimation of 26 properties, and their gradients with respect to 14 parameters.
+
+26 properties were estimated using the SimulationLayer layer.
+
+
+#=============================================================================================================#
+#| [1;94m                                    pure_data EnthalpyOfVaporization                                     [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}    36.260         37.043 +- 0.370     0.783   0.07692   3.00000   0.00524  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}    32.194         31.964 +- 0.243    -0.230   0.07692   3.00000   0.00045  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}    26.864         26.672 +- 0.201    -0.193   0.07692   3.00000   0.00032  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}    35.811         36.670 +- 0.247     0.860   0.07692   3.00000   0.00632  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}    31.229         32.020 +- 0.243     0.791   0.07692   3.00000   0.00535  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}    56.580         58.470 +- 0.475     1.890   0.07692   3.00000   0.03054  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}    51.420         52.438 +- 0.462     1.018   0.07692   3.00000   0.00885  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}    46.550         46.803 +- 0.409     0.253   0.07692   3.00000   0.00055  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}    41.560         41.731 +- 0.278     0.171   0.07692   3.00000   0.00025  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}    36.570         36.611 +- 0.386     0.041   0.07692   3.00000   0.00001  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}    31.520         30.815 +- 0.243    -0.705   0.07692   3.00000   0.00425  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}    26.420         25.358 +- 0.238    -1.062   0.07692   3.00000   0.00963  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}    32.290         37.601 +- 0.159     5.311   0.07692   3.00000   0.24104  
+---------------------------------------------------------------------------------------------------------------
+
+#=============================================================================================================#
+#| [1;94m                                            pure_data Density                                            [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}   702.800        699.476 +- 0.164    -3.324   0.07692  30.00000   0.00094  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}   682.520        673.360 +- 0.287    -9.160   0.07692  30.00000   0.00717  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}   651.000        639.653 +- 0.298   -11.347   0.07692  30.00000   0.01100  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}   698.500        697.580 +- 0.186    -0.920   0.07692  30.00000   0.00007  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}   675.220        672.470 +- 0.245    -2.750   0.07692  30.00000   0.00065  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}   736.900        745.304 +- 0.198     8.404   0.07692  30.00000   0.00604  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}   726.275        732.844 +- 0.182     6.569   0.07692  30.00000   0.00369  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}   713.900        718.671 +- 0.194     4.771   0.07692  30.00000   0.00195  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}   698.620        700.808 +- 0.199     2.188   0.07692  30.00000   0.00041  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}   679.750        679.080 +- 0.226    -0.670   0.07692  30.00000   0.00004  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}   654.920        649.737 +- 0.215    -5.183   0.07692  30.00000   0.00230  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}   621.140        608.608 +- 0.291   -12.532   0.07692  30.00000   0.01342  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}   934.200        932.641 +- 0.293    -1.559   0.07692  30.00000   0.00021  
+---------------------------------------------------------------------------------------------------------------
+#===================================================================================#
+#| [94m                         Objective Function Breakdown                          [0m |#
+#| [94m  Target Name              Residual  x  Weight  =  Contribution (Current-Prev) [0m |#
+#===================================================================================#
+pure_data                      0.36068      1.000 [92m     3.60679e-01[0m ( -2.202e+00 ) 
+Regularization                 0.01000      1.000 [91m     1.00000e-02[0m ( +1.000e-02 ) 
+Total                                             [92m     3.70679e-01[0m ( -2.192e+00 ) 
+-------------------------------------------------------------------------------------
+Creating the directory /gpfs/alpine1/scratch/juho8819/OpenFFLipidPaper/FFTraining/train-vdw/openff_unconstrained-2.3.0-internal-alkanes/result/optimize to print the force field
+#========================================================================#
+#|  The force field has been written to the result/optimize directory.  |#
+#|    Input file with optimization parameters saved to optimize.sav.    |#
+#========================================================================#
+
+  Step       |k|        |dk|       |grad|       -=X2=-     Delta(X2)    StepQual
+     1   1.000e-01   1.000e-01   1.449e+01[92m   3.70679e-01[0m  -2.192e+00      1.017
+
+#========================================================#
+#| [94m                   Total Gradient                   [0m |#
+#========================================================#
+   0 [  1.04980109e+01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -7.63741207e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  1.77911804e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [ -1.60755058e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.09240318e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  4.33331286e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  5.87468972e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.51798951e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  3.50566329e+00 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  8.80840873e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.62848611e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [ -5.68466025e-01 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  4.26133063e-01 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -7.53567657e-03 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [94m                   Total Hessian                    [0m |#
+#========================================================#
+ 2.57405674e+03 -1.05618267e+03  1.06641180e+01 -1.17741513e+01  9.93814785e+01 -6.22280763e+01  1.04899720e+02  1.62866787e+02  8.82285440e+02  2.22173878e+03  1.67987558e+00 -4.75897246e+00  2.75656586e+00 -5.26412343e-01 
+-1.05618267e+03  1.26131706e+03 -8.76627224e+00  1.75862333e+01 -4.76267149e+01  6.92931418e+01 -6.57417181e+01 -7.17032449e+01 -5.09957721e+02 -1.03501610e+03 -1.74317650e+00  8.06672554e+00 -2.90679829e+00  2.31460404e+00 
+ 1.06641180e+01 -8.76627224e+00  1.09660039e+01 -1.07424414e+01  0.00000000e+00  0.00000000e+00  3.57148458e+00  5.81606823e+00  6.40244732e+00  6.23783998e+00  1.45100582e+00 -4.44417926e+00  2.38594883e+00 -6.43249802e-01 
+-1.17741513e+01  1.75862333e+01 -1.07424414e+01  2.15418800e+01  0.00000000e+00  0.00000000e+00 -5.16616684e+00 -7.27600537e+00 -9.12265579e+00 -4.66553257e+00 -2.04411064e+00  8.82975102e+00 -3.39928523e+00  2.35831550e+00 
+ 9.93814785e+01 -4.76267149e+01  0.00000000e+00  0.00000000e+00  1.84065941e+01 -1.08084477e+01  1.67272056e+01  2.44396236e+01  3.16459217e+01  6.75874062e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+-6.22280763e+01  6.92931418e+01  0.00000000e+00  0.00000000e+00 -1.08084477e+01  1.87911624e+01 -1.43658356e+01 -1.65834535e+01 -2.60067830e+01 -4.43740885e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+ 1.04899720e+02 -6.57417181e+01  3.57148458e+00 -5.16616684e+00  1.67272056e+01 -1.43658356e+01  2.17810605e+01  2.76535525e+01  3.68833696e+01  7.13616447e+01  6.18626779e-01 -2.23635164e+00  1.02229578e+00 -4.67338975e-01 
+ 1.62866787e+02 -7.17032449e+01  5.81606823e+00 -7.27600537e+00  2.44396236e+01 -1.65834535e+01  2.76535525e+01  4.43799971e+01  5.24683552e+01  1.09282893e+02  9.55330383e-01 -3.04446616e+00  1.57264460e+00 -4.90467488e-01 
+ 8.82285440e+02 -5.09957721e+02  6.40244732e+00 -9.12265579e+00  3.16459217e+01 -2.60067830e+01  3.68833696e+01  5.24683552e+01  3.32884031e+02  7.90628934e+02  1.10264022e+00 -3.93623682e+00  1.82140125e+00 -8.04814980e-01 
+ 2.22173878e+03 -1.03501610e+03  6.23783998e+00 -4.66553257e+00  6.75874062e+01 -4.43740885e+01  7.13616447e+01  1.09282893e+02  7.90628934e+02  1.98622439e+03  8.80844522e-01 -1.61644014e+00  1.43238341e+00  2.20795055e-01 
+ 1.67987558e+00 -1.74317650e+00  1.45100582e+00 -2.04411064e+00  0.00000000e+00  0.00000000e+00  6.18626779e-01  9.55330383e-01  1.10264022e+00  8.80844522e-01  2.24882337e+00 -8.79794809e-01  4.10894614e-01 -1.76832506e-01 
+-4.75897246e+00  8.06672554e+00 -4.44417926e+00  8.82975102e+00  0.00000000e+00  0.00000000e+00 -2.23635164e+00 -3.04446616e+00 -3.93623682e+00 -1.61644014e+00 -8.79794809e-01  6.04444074e+00 -1.46668522e+00  1.15299415e+00 
+ 2.75656586e+00 -2.90679829e+00  2.38594883e+00 -3.39928523e+00  0.00000000e+00  0.00000000e+00  1.02229578e+00  1.57264460e+00  1.82140125e+00  1.43238341e+00  4.10894614e-01 -1.46668522e+00  2.67873608e+00 -2.99833066e-01 
+-5.26412343e-01  2.31460404e+00 -6.43249802e-01  2.35831550e+00  0.00000000e+00  0.00000000e+00 -4.67338975e-01 -4.90467488e-01 -8.04814980e-01  2.20795055e-01 -1.76832506e-01  1.15299415e+00 -2.99833066e-01  2.42398105e+00 
+----------------------------------------------------------
+Increasing trust radius to  1.2000e-01
+Calculating nonlinear optimization step
+Finding trust radius: H+0.0000*I, length 1.7715e-01 (target 1.2000e-01)
+Finding trust radius: H+9.0000*I, length 8.7055e-02 (target 1.2000e-01)
+Finding trust radius: H+61.6869*I, length 3.0964e-02 (target 1.2000e-01)
+Finding trust radius: H+23.5623*I, length 5.5407e-02 (target 1.2000e-01)
+Finding trust radius: H+3.4377*I, length 1.2111e-01 (target 1.2000e-01)
+Finding trust radius: H+0.2047*I, length 1.7159e-01 (target 1.2000e-01)
+Finding trust radius: H+4.0134*I, length 1.1585e-01 (target 1.2000e-01)
+Finding trust radius: H+3.4778*I, length 1.2072e-01 (target 1.2000e-01)
+Finding trust radius: H+3.5562*I, length 1.1997e-01 (target 1.2000e-01)
+Finding trust radius: H+3.5528*I, length 1.2000e-01 (target 1.2000e-01)
+Finding trust radius: H+3.5531*I, length 1.2000e-01 (target 1.2000e-01)
+Finding trust radius: H+3.5531*I, length 1.2000e-01 (target 1.2000e-01)
+Finding trust radius: H+3.5531*I, length 1.2000e-01 (target 1.2000e-01)
+Trust-radius step found (length 1.2000e-01),  3.5531e+00 added to Hessian diagonal
+#========================================================#
+#| [95m  Mathematical Parameters (Current + Step = Next)   [0m |#
+#========================================================#
+   0 [ -1.1447e-02 + 2.1512e-02 =  1.0066e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -3.1266e-02 - 1.1493e-02 = -4.2759e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -7.3103e-02 - 9.2930e-02 = -1.6603e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.0236e-02 + 1.7842e-02 =  2.8078e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  2.9992e-02 + 1.9504e-02 =  4.9496e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [ -2.0161e-02 - 2.3034e-02 = -4.3194e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  7.8031e-03 - 9.9300e-04 =  6.8101e-03 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -2.8227e-03 - 4.6566e-02 = -4.9388e-02 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -1.9758e-02 - 2.2834e-02 = -4.2592e-02 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -3.0053e-02 - 2.3592e-02 = -5.3645e-02 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [ -8.8193e-03 - 1.0564e-02 = -1.9383e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.4613e-02 - 9.9137e-03 =  4.6998e-03 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [ -1.5605e-02 - 1.6281e-02 = -3.1886e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -1.5472e-02 - 1.4753e-02 = -3.0225e-02 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [95m    Physical Parameters (Current + Step = Next)     [0m |#
+#========================================================#
+   0 [  1.2222e-02 + 2.1512e-03 =  1.4373e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4638e+00 - 1.1493e-02 =  1.4523e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  1.1610e-02 - 9.2930e-03 =  2.3167e-03 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.4462e+00 + 1.7842e-02 =  1.4640e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.8975e-02 + 1.9504e-03 =  2.0925e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4589e+00 - 2.3034e-02 =  1.4359e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0410e-01 - 9.9300e-05 =  1.0400e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.9553e+00 - 4.6566e-02 =  1.9088e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.1859e-01 - 2.2834e-03 =  1.1631e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.8714e+00 - 2.3592e-02 =  1.8478e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2368e-01 - 1.0564e-03 =  2.2262e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7165e+00 - 9.9137e-03 =  1.7066e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.3765e-02 - 1.6281e-03 =  8.2137e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.6870e+00 - 1.4753e-02 =  1.6722e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+Input file with saved parameters: optimize.sav
+#========================================================#
+#| [94m     Iteration 2: Evaluating objective function     [0m |#
+#| [94m        and derivatives through second order        [0m |#
+#========================================================#
+Requesting the estimation of 26 properties, and their gradients with respect to 14 parameters.
+
+26 properties were estimated using the SimulationLayer layer.
+
+
+#=============================================================================================================#
+#| [1;94m                                    pure_data EnthalpyOfVaporization                                     [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}    36.260         36.299 +- 0.243     0.039   0.07692   3.00000   0.00001  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}    32.194         30.978 +- 0.321    -1.216   0.07692   3.00000   0.01264  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}    26.864         26.738 +- 0.288    -0.126   0.07692   3.00000   0.00014  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}    35.811         36.185 +- 0.250     0.374   0.07692   3.00000   0.00120  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}    31.229         30.920 +- 0.214    -0.309   0.07692   3.00000   0.00082  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}    56.580         57.510 +- 0.336     0.930   0.07692   3.00000   0.00739  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}    51.420         51.760 +- 0.460     0.340   0.07692   3.00000   0.00099  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}    46.550         46.984 +- 0.408     0.434   0.07692   3.00000   0.00161  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}    41.560         41.010 +- 0.418    -0.550   0.07692   3.00000   0.00259  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}    36.570         35.696 +- 0.269    -0.874   0.07692   3.00000   0.00652  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}    31.520         29.867 +- 0.366    -1.653   0.07692   3.00000   0.02336  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}    26.420         24.884 +- 0.320    -1.536   0.07692   3.00000   0.02017  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}    32.290         33.862 +- 0.238     1.572   0.07692   3.00000   0.02111  
+---------------------------------------------------------------------------------------------------------------
+
+#=============================================================================================================#
+#| [1;94m                                            pure_data Density                                            [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}   702.800        703.061 +- 0.231     0.261   0.07692  30.00000   0.00001  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}   682.520        677.366 +- 0.265    -5.154   0.07692  30.00000   0.00227  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}   651.000        643.795 +- 0.269    -7.205   0.07692  30.00000   0.00444  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}   698.500        700.925 +- 0.211     2.425   0.07692  30.00000   0.00050  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}   675.220        675.734 +- 0.249     0.514   0.07692  30.00000   0.00002  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}   736.900        745.297 +- 0.204     8.397   0.07692  30.00000   0.00603  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}   726.275        734.142 +- 0.235     7.867   0.07692  30.00000   0.00529  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}   713.900        719.480 +- 0.178     5.580   0.07692  30.00000   0.00266  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}   698.620        702.123 +- 0.221     3.503   0.07692  30.00000   0.00105  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}   679.750        679.870 +- 0.264     0.120   0.07692  30.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}   654.920        650.809 +- 0.254    -4.111   0.07692  30.00000   0.00144  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}   621.140        610.014 +- 0.282   -11.126   0.07692  30.00000   0.01058  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}   934.200        936.452 +- 0.364     2.252   0.07692  30.00000   0.00043  
+---------------------------------------------------------------------------------------------------------------
+#===================================================================================#
+#| [94m                         Objective Function Breakdown                          [0m |#
+#| [94m  Target Name              Residual  x  Weight  =  Contribution (Current-Prev) [0m |#
+#===================================================================================#
+pure_data                      0.13325      1.000 [92m     1.33253e-01[0m ( -2.274e-01 ) 
+Regularization                 0.04411      1.000 [91m     4.41059e-02[0m ( +3.411e-02 ) 
+Total                                             [92m     1.77359e-01[0m ( -1.933e-01 ) 
+-------------------------------------------------------------------------------------
+Backing up result/optimize/force_field_tagged.offxml -> result/optimize/force_field_tagged_1.offxml
+#========================================================================#
+#|  The force field has been written to the result/optimize directory.  |#
+#|    Input file with optimization parameters saved to optimize.sav.    |#
+#========================================================================#
+
+  Step       |k|        |dk|       |grad|       -=X2=-     Delta(X2)    StepQual
+     2   2.100e-01   1.200e-01   5.500e+00[92m   1.77359e-01[0m  -1.933e-01      1.013
+
+#========================================================#
+#| [94m                   Total Gradient                   [0m |#
+#========================================================#
+   0 [ -4.81572990e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -4.29531240e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -1.10840857e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [ -4.81024330e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [ -3.47748456e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.65326412e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [ -2.14308425e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -3.87273382e-01 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -9.57262771e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -2.31064550e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  5.80450112e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [ -1.31985427e-01 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  9.32856459e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  9.91583833e-03 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [94m                   Total Hessian                    [0m |#
+#========================================================#
+ 2.36188652e+03 -1.20993132e+03 -2.10392258e+00 -1.09505023e+01  9.74007656e+01 -5.31375075e+01  9.84175167e+01  1.56132002e+02  8.77200557e+02  2.17308884e+03  1.67112764e+00 -3.80430239e+00  2.62878832e+00 -5.28277830e-01 
+-1.20993132e+03  1.24990491e+03  1.84947531e+01  2.61548456e+01 -4.21507936e+01  4.57198789e+01 -5.41562712e+01 -6.26102435e+01 -5.58924446e+02 -1.22152987e+03 -3.37555573e+00  1.09645186e+01 -5.11204736e+00  5.25913667e+00 
+-2.10392258e+00  1.84947531e+01  2.21650278e+01  1.29469016e+01  0.00000000e+00  0.00000000e+00 -2.86706019e+00 -3.06484199e+00 -5.06046136e+00  3.87165447e+00 -1.16752834e+00  6.96267819e+00 -1.57685396e+00  5.87073518e+00 
+-1.09505023e+01  2.61548456e+01  1.29469016e+01  2.16589272e+01  0.00000000e+00  0.00000000e+00 -5.87627353e+00 -8.89638496e+00 -1.08024976e+01 -3.53222990e+00 -2.58082849e+00  8.10825161e+00 -3.92506974e+00  3.66971388e+00 
+ 9.74007656e+01 -4.21507936e+01  0.00000000e+00  0.00000000e+00  1.84534005e+01 -9.49599969e+00  1.61342738e+01  2.49072295e+01  3.16862418e+01  7.16923720e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+-5.31375075e+01  4.57198789e+01  0.00000000e+00  0.00000000e+00 -9.49599969e+00  1.13648794e+01 -1.02440865e+01 -1.22721968e+01 -2.06656994e+01 -4.08304965e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+ 9.84175167e+01 -5.41562712e+01 -2.86706019e+00 -5.87627353e+00  1.61342738e+01 -1.02440865e+01  1.99015148e+01  2.69551859e+01  3.50172987e+01  7.16549805e+01  8.17294459e-01 -2.28380927e+00  1.26011764e+00 -7.99284795e-01 
+ 1.56132002e+02 -6.26102435e+01 -3.06484199e+00 -8.89638496e+00  2.49072295e+01 -1.22721968e+01  2.69551859e+01  4.73916738e+01  5.21685702e+01  1.12776981e+02  1.29567349e+00 -3.27969413e+00  2.01825757e+00 -8.31475892e-01 
+ 8.77200557e+02 -5.58924446e+02 -5.06046136e+00 -1.08024976e+01  3.16862418e+01 -2.06656994e+01  3.50172987e+01  5.21685702e+01  3.48950097e+02  8.32510665e+02  1.51205994e+00 -4.16908435e+00  2.33470577e+00 -1.40698603e+00 
+ 2.17308884e+03 -1.22152987e+03  3.87165447e+00 -3.53222990e+00  7.16923720e+01 -4.08304965e+01  7.16549805e+01  1.12776981e+02  8.32510665e+02  2.07271361e+03  7.47096506e-01 -5.92671858e-01  1.24208846e+00  1.17998613e+00 
+ 1.67112764e+00 -3.37555573e+00 -1.16752834e+00 -2.58082849e+00  0.00000000e+00  0.00000000e+00  8.17294459e-01  1.29567349e+00  1.51205994e+00  7.47096506e-01  2.36314281e+00 -9.90255416e-01  5.61377270e-01 -3.23837029e-01 
+-3.80430239e+00  1.09645186e+01  6.96267819e+00  8.10825161e+00  0.00000000e+00  0.00000000e+00 -2.28380927e+00 -3.27969413e+00 -4.16908435e+00 -5.92671858e-01 -9.90255416e-01  5.57048479e+00 -1.47831887e+00  1.99514982e+00 
+ 2.62878832e+00 -5.11204736e+00 -1.57685396e+00 -3.92506974e+00  0.00000000e+00  0.00000000e+00  1.26011764e+00  2.01825757e+00  2.33470577e+00  1.24208846e+00  5.61377270e-01 -1.47831887e+00  2.87099296e+00 -4.33515189e-01 
+-5.28277830e-01  5.25913667e+00  5.87073518e+00  3.66971388e+00  0.00000000e+00  0.00000000e+00 -7.99284795e-01 -8.31475892e-01 -1.40698603e+00  1.17998613e+00 -3.23837029e-01  1.99514982e+00 -4.33515189e-01  3.71004739e+00 
+----------------------------------------------------------
+Increasing trust radius to  1.3965e-01
+Calculating nonlinear optimization step
+Newton-Raphson step found (length 1.0196e-01)
+#========================================================#
+#| [95m  Mathematical Parameters (Current + Step = Next)   [0m |#
+#========================================================#
+   0 [  1.0066e-02 + 5.4948e-02 =  6.5014e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -4.2759e-02 - 6.1766e-03 = -4.8935e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -1.6603e-01 + 3.5657e-03 = -1.6247e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  2.8078e-02 + 4.4103e-02 =  7.2181e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  4.9496e-02 - 2.9074e-02 =  2.0421e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [ -4.3194e-02 + 1.1286e-02 = -3.1908e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  6.8101e-03 - 2.1486e-02 = -1.4676e-02 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -4.9388e-02 - 5.8002e-03 = -5.5188e-02 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -4.2592e-02 + 4.1102e-03 = -3.8482e-02 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -5.3645e-02 - 5.9421e-02 = -1.1307e-01 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [ -1.9383e-02 + 3.0538e-04 = -1.9078e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  4.6998e-03 - 4.2100e-03 =  4.8972e-04 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [ -3.1886e-02 - 7.1568e-04 = -3.2602e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -3.0225e-02 - 1.8623e-02 = -4.8849e-02 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [95m    Physical Parameters (Current + Step = Next)     [0m |#
+#========================================================#
+   0 [  1.4373e-02 + 5.4948e-03 =  1.9868e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4523e+00 - 6.1766e-03 =  1.4461e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  2.3167e-03 + 3.5657e-04 =  2.6733e-03 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.4640e+00 + 4.4103e-02 =  1.5081e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  2.0925e-02 - 2.9074e-03 =  1.8017e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4359e+00 + 1.1286e-02 =  1.4472e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0400e-01 - 2.1486e-03 =  1.0185e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.9088e+00 - 5.8002e-03 =  1.9030e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.1631e-01 + 4.1102e-04 =  1.1672e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.8478e+00 - 5.9421e-02 =  1.7884e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2262e-01 + 3.0538e-05 =  2.2265e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7066e+00 - 4.2100e-03 =  1.7024e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.2137e-02 - 7.1568e-05 =  8.2065e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.6722e+00 - 1.8623e-02 =  1.6536e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+Input file with saved parameters: optimize.sav
+#========================================================#
+#| [94m     Iteration 3: Evaluating objective function     [0m |#
+#| [94m        and derivatives through second order        [0m |#
+#========================================================#
+Requesting the estimation of 26 properties, and their gradients with respect to 14 parameters.
+
+26 properties were estimated using the SimulationLayer layer.
+
+
+#=============================================================================================================#
+#| [1;94m                                    pure_data EnthalpyOfVaporization                                     [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}    36.260         36.641 +- 0.357     0.382   0.07692   3.00000   0.00125  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}    32.194         31.210 +- 0.335    -0.983   0.07692   3.00000   0.00826  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}    26.864         26.517 +- 0.308    -0.347   0.07692   3.00000   0.00103  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}    35.811         35.806 +- 0.319    -0.004   0.07692   3.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}    31.229         30.887 +- 0.217    -0.343   0.07692   3.00000   0.00100  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}    56.580         56.291 +- 0.470    -0.289   0.07692   3.00000   0.00072  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}    51.420         52.025 +- 0.442     0.605   0.07692   3.00000   0.00313  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}    46.550         46.208 +- 0.414    -0.342   0.07692   3.00000   0.00100  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}    41.560         41.489 +- 0.440    -0.071   0.07692   3.00000   0.00004  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}    36.570         36.570 +- 0.348     0.000   0.07692   3.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}    31.520         30.264 +- 0.326    -1.256   0.07692   3.00000   0.01347  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}    26.420         25.100 +- 0.307    -1.320   0.07692   3.00000   0.01490  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}    32.290         33.364 +- 0.152     1.074   0.07692   3.00000   0.00986  
+---------------------------------------------------------------------------------------------------------------
+
+#=============================================================================================================#
+#| [1;94m                                            pure_data Density                                            [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}   702.800        700.575 +- 0.239    -2.225   0.07692  30.00000   0.00042  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}   682.520        675.828 +- 0.274    -6.692   0.07692  30.00000   0.00383  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}   651.000        643.086 +- 0.355    -7.914   0.07692  30.00000   0.00535  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}   698.500        698.424 +- 0.249    -0.076   0.07692  30.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}   675.220        674.136 +- 0.255    -1.084   0.07692  30.00000   0.00010  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}   736.900        740.664 +- 0.143     3.764   0.07692  30.00000   0.00121  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}   726.275        729.196 +- 0.157     2.921   0.07692  30.00000   0.00073  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}   713.900        715.599 +- 0.204     1.699   0.07692  30.00000   0.00025  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}   698.620        698.607 +- 0.183    -0.013   0.07692  30.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}   679.750        677.875 +- 0.233    -1.875   0.07692  30.00000   0.00030  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}   654.920        650.127 +- 0.269    -4.793   0.07692  30.00000   0.00196  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}   621.140        611.547 +- 0.309    -9.593   0.07692  30.00000   0.00786  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}   934.200        928.175 +- 0.401    -6.025   0.07692  30.00000   0.00310  
+---------------------------------------------------------------------------------------------------------------
+#===================================================================================#
+#| [94m                         Objective Function Breakdown                          [0m |#
+#| [94m  Target Name              Residual  x  Weight  =  Contribution (Current-Prev) [0m |#
+#===================================================================================#
+pure_data                      0.07979      1.000 [92m     7.97884e-02[0m ( -5.347e-02 ) 
+Regularization                 0.06100      1.000 [91m     6.10016e-02[0m ( +1.690e-02 ) 
+Total                                             [92m     1.40790e-01[0m ( -3.657e-02 ) 
+-------------------------------------------------------------------------------------
+Backing up result/optimize/force_field_tagged.offxml -> result/optimize/force_field_tagged_2.offxml
+#========================================================================#
+#|  The force field has been written to the result/optimize directory.  |#
+#|    Input file with optimization parameters saved to optimize.sav.    |#
+#========================================================================#
+
+  Step       |k|        |dk|       |grad|       -=X2=-     Delta(X2)    StepQual
+     3   2.470e-01   1.020e-01   1.177e+01[92m   1.40790e-01[0m  -3.657e-02      0.558
+
+#========================================================#
+#| [94m                   Total Gradient                   [0m |#
+#========================================================#
+   0 [ -7.33061633e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  4.33507847e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  5.16532359e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  2.48709353e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [ -5.03787011e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  4.46926088e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [ -5.53755549e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -6.31002719e-01 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -2.81088849e+00 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -7.51922105e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [ -2.00156471e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  5.39821647e-02 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [ -2.43659602e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -2.71510679e-03 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [94m                   Total Hessian                    [0m |#
+#========================================================#
+ 2.10129412e+03 -9.89955686e+02 -1.27394094e+00 -1.12757348e+01  9.13842601e+01 -8.48807915e+01  1.01979219e+02  1.57631804e+02  7.88425142e+02  2.23746185e+03  1.40394729e+00 -8.59231741e+00  2.63888032e+00  6.51634965e-01 
+-9.89955686e+02  1.13757107e+03  2.02426716e+01  2.44272878e+01 -5.31282650e+01  7.76522224e+01 -7.16070712e+01 -8.20728320e+01 -4.55848225e+02 -1.12662448e+03 -2.38543433e+00  1.80553945e+01 -4.34165492e+00  7.16846126e-01 
+-1.27394094e+00  2.02426716e+01  3.97935642e+01  1.84829563e+01  0.00000000e+00  0.00000000e+00 -2.33843526e+00  7.99117433e-01 -4.86389701e+00 -1.19814966e+00 -9.61529849e-01  1.29434221e+01 -1.51721040e+00  3.27894490e+00 
+-1.12757348e+01  2.44272878e+01  1.84829563e+01  2.41513312e+01  0.00000000e+00  0.00000000e+00 -5.42090041e+00 -5.61588905e+00 -1.02772625e+01 -1.20689256e+01 -2.15843587e+00  1.63690871e+01 -3.92719322e+00  6.65438533e-01 
+ 9.13842601e+01 -5.31282650e+01  0.00000000e+00  0.00000000e+00  1.89514704e+01 -1.48669368e+01  1.78494224e+01  2.69977375e+01  3.28333671e+01  8.37224498e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+-8.48807915e+01  7.76522224e+01  0.00000000e+00  0.00000000e+00 -1.48669368e+01  2.15841514e+01 -1.78167442e+01 -2.30061424e+01 -3.40151671e+01 -8.18949592e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+ 1.01979219e+02 -7.16070712e+01 -2.33843526e+00 -5.42090041e+00  1.78494224e+01 -1.78167442e+01  2.30779221e+01  3.03819330e+01  3.93113056e+01  9.53958214e+01  6.10194125e-01 -4.07567388e+00  1.13290693e+00  1.03142607e-01 
+ 1.57631804e+02 -8.20728320e+01  7.99117433e-01 -5.61588905e+00  2.69977375e+01 -2.30061424e+01  3.03819330e+01  5.10168722e+01  5.71867786e+01  1.45588226e+02  7.53031087e-01 -4.32522031e+00  1.42705611e+00  4.99087346e-01 
+ 7.88425142e+02 -4.55848225e+02 -4.86389701e+00 -1.02772625e+01  3.28333671e+01 -3.40151671e+01  3.93113056e+01  5.71867786e+01  3.10194284e+02  8.53945618e+02  1.14068608e+00 -7.71314482e+00  2.11396672e+00  1.43124340e-01 
+ 2.23746185e+03 -1.12662448e+03 -1.19814966e+00 -1.20689256e+01  8.37224498e+01 -8.18949592e+01  9.53958214e+01  1.45588226e+02  8.53945618e+02  2.42453739e+03  1.50891452e+00 -9.20202886e+00  2.83752217e+00  7.17612277e-01 
+ 1.40394729e+00 -2.38543433e+00 -9.61529849e-01 -2.15843587e+00  0.00000000e+00  0.00000000e+00  6.10194125e-01  7.53031087e-01  1.14068608e+00  1.50891452e+00  2.24181844e+00 -1.62183545e+00  4.48694713e-01  3.73625602e-02 
+-8.59231741e+00  1.80553945e+01  1.29434221e+01  1.63690871e+01  0.00000000e+00  0.00000000e+00 -4.07567388e+00 -4.32522031e+00 -7.71314482e+00 -9.20202886e+00 -1.62183545e+00  1.41190463e+01 -2.95829041e+00  4.04703166e-01 
+ 2.63888032e+00 -4.34165492e+00 -1.51721040e+00 -3.92719322e+00  0.00000000e+00  0.00000000e+00  1.13290693e+00  1.42705611e+00  2.11396672e+00  2.83752217e+00  4.48694713e-01 -2.95829041e+00  2.83465131e+00  9.62568637e-02 
+ 6.51634965e-01  7.16846126e-01  3.27894490e+00  6.65438533e-01  0.00000000e+00  0.00000000e+00  1.03142607e-01  4.99087346e-01  1.43124340e-01  7.17612277e-01  3.73625602e-02  4.04703166e-01  9.62568637e-02  2.35159881e+00 
+----------------------------------------------------------
+Calculating nonlinear optimization step
+Newton-Raphson step found (length 6.7088e-02)
+#========================================================#
+#| [95m  Mathematical Parameters (Current + Step = Next)   [0m |#
+#========================================================#
+   0 [  6.5014e-02 + 1.4466e-02 =  7.9480e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -4.8935e-02 - 1.8462e-03 = -5.0782e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -1.6247e-01 - 1.4374e-02 = -1.7684e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  7.2181e-02 - 2.4205e-02 =  4.7976e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  2.0421e-02 + 1.7447e-02 =  3.7869e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [ -3.1908e-02 + 5.5107e-03 = -2.6398e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [ -1.4676e-02 + 1.5219e-02 =  5.4362e-04 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -5.5188e-02 - 1.9490e-02 = -7.4678e-02 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -3.8482e-02 + 1.6072e-03 = -3.6875e-02 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -1.1307e-01 - 1.1505e-02 = -1.2457e-01 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [ -1.9078e-02 + 6.2653e-03 = -1.2813e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  4.8972e-04 + 4.1893e-02 =  4.2383e-02 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [ -3.2602e-02 + 7.0380e-03 = -2.5564e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -4.8849e-02 + 2.3886e-02 = -2.4963e-02 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [95m    Physical Parameters (Current + Step = Next)     [0m |#
+#========================================================#
+   0 [  1.9868e-02 + 1.4466e-03 =  2.1314e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4461e+00 - 1.8462e-03 =  1.4443e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  2.6733e-03 - 1.4374e-03 =  1.2359e-03 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.5081e+00 - 2.4205e-02 =  1.4839e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.8017e-02 + 1.7447e-03 =  1.9762e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4472e+00 + 5.5107e-03 =  1.4527e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0185e-01 + 1.5219e-03 =  1.0337e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.9030e+00 - 1.9490e-02 =  1.8835e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.1672e-01 + 1.6072e-04 =  1.1688e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.7884e+00 - 1.1505e-02 =  1.7769e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2265e-01 + 6.2653e-04 =  2.2328e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7024e+00 + 4.1893e-02 =  1.7443e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.2065e-02 + 7.0380e-04 =  8.2769e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.6536e+00 + 2.3886e-02 =  1.6775e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+Input file with saved parameters: optimize.sav
+#========================================================#
+#| [94m     Iteration 4: Evaluating objective function     [0m |#
+#| [94m        and derivatives through second order        [0m |#
+#========================================================#
+Requesting the estimation of 26 properties, and their gradients with respect to 14 parameters.
+
+26 properties were estimated using the SimulationLayer layer.
+
+
+#=============================================================================================================#
+#| [1;94m                                    pure_data EnthalpyOfVaporization                                     [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}    36.260         36.499 +- 0.372     0.240   0.07692   3.00000   0.00049  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}    32.194         32.046 +- 0.302    -0.148   0.07692   3.00000   0.00019  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}    26.864         26.631 +- 0.293    -0.233   0.07692   3.00000   0.00046  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}    35.811         36.248 +- 0.322     0.437   0.07692   3.00000   0.00164  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}    31.229         31.243 +- 0.319     0.014   0.07692   3.00000   0.00000  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}    56.580         57.323 +- 0.446     0.743   0.07692   3.00000   0.00472  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}    51.420         51.325 +- 0.327    -0.095   0.07692   3.00000   0.00008  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}    46.550         47.537 +- 0.392     0.987   0.07692   3.00000   0.00832  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}    41.560         41.506 +- 0.394    -0.054   0.07692   3.00000   0.00003  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}    36.570         36.009 +- 0.258    -0.561   0.07692   3.00000   0.00269  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}    31.520         31.259 +- 0.238    -0.261   0.07692   3.00000   0.00058  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}    26.420         25.699 +- 0.220    -0.721   0.07692   3.00000   0.00445  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}    32.290         33.925 +- 0.158     1.635   0.07692   3.00000   0.02284  
+---------------------------------------------------------------------------------------------------------------
+
+#=============================================================================================================#
+#| [1;94m                                            pure_data Density                                            [0m |#
+#| [1;94m Temperature  Pressure Substance  Reference  Calculated +- Stdev     Delta    Weight    Denom     Term   [0m |#
+#=============================================================================================================#
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCCC{solv}{x=1.000000}   702.800        702.273 +- 0.223    -0.527   0.07692  30.00000   0.00002  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CCC{solv}{x=1.000000}   682.520        678.567 +- 0.251    -3.953   0.07692  30.00000   0.00134  
+  298.15 kelvin 1.0 standard_atmosphere C/C=C\CC{solv}{x=1.000000}   651.000        646.187 +- 0.319    -4.813   0.07692  30.00000   0.00198  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CCC{solv}{x=1.000000}   698.500        700.015 +- 0.241     1.515   0.07692  30.00000   0.00020  
+  298.15 kelvin 1.0 standard_atmosphere CC/C=C\CC{solv}{x=1.000000}   675.220        675.927 +- 0.291     0.707   0.07692  30.00000   0.00004  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCCC{solv}{x=1.000000}   736.900        741.209 +- 0.191     4.309   0.07692  30.00000   0.00159  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCCC{solv}{x=1.000000}   726.275        729.575 +- 0.224     3.300   0.07692  30.00000   0.00093  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCCC{solv}{x=1.000000}   713.900        716.517 +- 0.198     2.617   0.07692  30.00000   0.00059  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCCC{solv}{x=1.000000}   698.620        699.596 +- 0.188     0.976   0.07692  30.00000   0.00008  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCCC{solv}{x=1.000000}   679.750        679.087 +- 0.232    -0.663   0.07692  30.00000   0.00004  
+  298.15 kelvin 1.0 standard_atmosphere CCCCCC{solv}{x=1.000000}   654.920        651.595 +- 0.226    -3.325   0.07692  30.00000   0.00095  
+  298.15 kelvin 1.0 standard_atmosphere CCCCC{solv}{x=1.000000}   621.140        613.439 +- 0.267    -7.701   0.07692  30.00000   0.00507  
+  298.15 kelvin 1.0 standard_atmosphere COC(C)=O{solv}{x=1.000000}   934.200        941.027 +- 0.377     6.827   0.07692  30.00000   0.00398  
+---------------------------------------------------------------------------------------------------------------
+#===================================================================================#
+#| [94m                         Objective Function Breakdown                          [0m |#
+#| [94m  Target Name              Residual  x  Weight  =  Contribution (Current-Prev) [0m |#
+#===================================================================================#
+pure_data                      0.06329      1.000 [92m     6.32901e-02[0m ( -1.650e-02 ) 
+Regularization                 0.07029      1.000 [91m     7.02934e-02[0m ( +9.292e-03 ) 
+Total                                             [92m     1.33584e-01[0m ( -7.206e-03 ) 
+-------------------------------------------------------------------------------------
+Backing up result/optimize/force_field_tagged.offxml -> result/optimize/force_field_tagged_3.offxml
+#========================================================================#
+#|  The force field has been written to the result/optimize directory.  |#
+#|    Input file with optimization parameters saved to optimize.sav.    |#
+#========================================================================#
+
+  Step       |k|        |dk|       |grad|       -=X2=-     Delta(X2)    StepQual
+     4   2.651e-01   6.709e-02   3.833e+00[92m   1.33584e-01[0m  -7.206e-03      0.313
+
+#========================================================#
+#| [94m                   Total Gradient                   [0m |#
+#========================================================#
+   0 [  2.38413890e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  2.58438243e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -1.85244825e+00 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [ -6.97634552e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  5.40843639e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.37723625e-01 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  2.20401962e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  3.01814612e-01 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  8.44555393e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.95127341e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  1.09620453e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [ -4.91599551e-01 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  1.99801423e-01 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  2.11347891e-01 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+#========================================================#
+#| [94m                   Total Hessian                    [0m |#
+#========================================================#
+ 2.01192249e+03 -1.08088632e+03 -4.03727976e+01 -1.61359164e+01  9.01100192e+01 -6.19528921e+01  9.06052988e+01  1.47527772e+02  7.80648424e+02  2.22600201e+03  2.41049063e+00 -1.25675299e+01  4.60516905e+00  4.35089165e+00 
+-1.08088632e+03  1.44239615e+03  1.14151110e+02  2.73114514e+01 -7.02858770e+01  8.79142633e+01 -8.38621234e+01 -1.08555348e+02 -5.22790600e+02 -1.30317894e+03 -2.50880004e+00  2.51983896e+01 -5.49451817e+00 -2.91360998e+00 
+-4.03727976e+01  1.14151110e+02  4.83178692e+02  1.02849056e+02  0.00000000e+00  0.00000000e+00 -2.16813515e+01 -2.48855434e+01 -3.71017956e+01  5.78229163e+00 -7.68804842e+00  9.92892916e+01 -1.81152489e+01 -5.98772881e+00 
+-1.61359164e+01  2.73114514e+01  1.02849056e+02  2.85549653e+01  0.00000000e+00  0.00000000e+00 -6.83491307e+00 -9.40340926e+00 -1.19814502e+01 -5.42799734e+00 -2.71845925e+00  2.38027673e+01 -5.75099311e+00 -3.62365542e+00 
+ 9.01100192e+01 -7.02858770e+01  0.00000000e+00  0.00000000e+00  2.17287779e+01 -1.34718260e+01  1.85867821e+01  2.99830605e+01  3.48440947e+01  8.85059506e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+-6.19528921e+01  8.79142633e+01  0.00000000e+00  0.00000000e+00 -1.34718260e+01  2.16178647e+01 -1.58309565e+01 -2.08592282e+01 -2.81060782e+01 -6.35130376e+01  0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00 
+ 9.06052988e+01 -8.38621234e+01 -2.16813515e+01 -6.83491307e+00  1.85867821e+01 -1.58309565e+01  2.25181618e+01  3.16163123e+01  3.76559435e+01  8.71038937e+01  8.63982152e-01 -5.71594190e+00  1.72074073e+00  1.39805466e+00 
+ 1.47527772e+02 -1.08555348e+02 -2.48855434e+01 -9.40340926e+00  2.99830605e+01 -2.08592282e+01  3.16163123e+01  5.38089228e+01  5.80377397e+01  1.39857351e+02  1.35818203e+00 -7.44025684e+00  2.61555553e+00  2.40364099e+00 
+ 7.80648424e+02 -5.22790600e+02 -3.71017956e+01 -1.19814502e+01  3.48440947e+01 -2.81060782e+01  3.76559435e+01  5.80377397e+01  3.18787643e+02  8.79059697e+02  1.54558062e+00 -9.94234389e+00  3.06186041e+00  2.53868355e+00 
+ 2.22600201e+03 -1.30317894e+03  5.78229163e+00 -5.42799734e+00  8.85059506e+01 -6.35130376e+01  8.71038937e+01  1.39857351e+02  8.79059697e+02  2.51006378e+03  1.47488944e+00 -2.56806708e+00  2.52124431e+00  3.34457812e+00 
+ 2.41049063e+00 -2.50880004e+00 -7.68804842e+00 -2.71845925e+00  0.00000000e+00  0.00000000e+00  8.63982152e-01  1.35818203e+00  1.54558062e+00  1.47488944e+00  2.37570674e+00 -2.19324837e+00  7.31347701e-01  6.46906291e-01 
+-1.25675299e+01  2.51983896e+01  9.92892916e+01  2.38027673e+01  0.00000000e+00  0.00000000e+00 -5.71594190e+00 -7.44025684e+00 -9.94234389e+00 -2.56806708e+00 -2.19324837e+00  2.39442937e+01 -4.79852605e+00 -2.55842747e+00 
+ 4.60516905e+00 -5.49451817e+00 -1.81152489e+01 -5.75099311e+00  0.00000000e+00  0.00000000e+00  1.72074073e+00  2.61555553e+00  3.06186041e+00  2.52124431e+00  7.31347701e-01 -4.79852605e+00  3.45426911e+00  1.18875268e+00 
+ 4.35089165e+00 -2.91360998e+00 -5.98772881e+00 -3.62365542e+00  0.00000000e+00  0.00000000e+00  1.39805466e+00  2.40364099e+00  2.53868355e+00  3.34457812e+00  6.46906291e-01 -2.55842747e+00  1.18875268e+00  3.27616189e+00 
+----------------------------------------------------------
+Convergence criterion reached for objective function (1.00e-02)
+#========================================================#
+#| [92m               [0m[1mOptimization Converged[0m               [0m |#
+#| [92m           Final objective function value           [0m |#
+#| [92m  Full:  1.335836e-01  Un-penalized:  6.329014e-02  [0m |#
+#========================================================#
+#========================================================#
+#| [94m           Final optimization parameters:           [0m |#
+#========================================================#
+   0 [  7.9480e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [ -5.0782e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [ -1.7684e-01 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  4.7976e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  3.7869e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [ -2.6398e-02 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  5.4362e-04 ] : vdW/Atom/epsilon/[#6:1]
+   7 [ -7.4678e-02 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [ -3.6875e-02 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [ -1.2457e-01 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [ -1.2813e-02 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  4.2383e-02 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [ -2.5564e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [ -2.4963e-02 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+#========================================================#
+#| [94m             Final physical parameters:             [0m |#
+#========================================================#
+   0 [  2.1314e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]
+   1 [  1.4443e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]
+   2 [  1.2359e-03 ] : vdW/Atom/epsilon/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   3 [  1.4839e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X4]-[#7,#8,#9,#16,#17,#35]
+   4 [  1.9762e-02 ] : vdW/Atom/epsilon/[#1:1]-[#6X3]
+   5 [  1.4527e+00 ] : vdW/Atom/rmin_half/[#1:1]-[#6X3]
+   6 [  1.0337e-01 ] : vdW/Atom/epsilon/[#6:1]
+   7 [  1.8835e+00 ] : vdW/Atom/rmin_half/[#6:1]
+   8 [  1.1688e-01 ] : vdW/Atom/epsilon/[#6X4:1]
+   9 [  1.7769e+00 ] : vdW/Atom/rmin_half/[#6X4:1]
+  10 [  2.2328e-01 ] : vdW/Atom/epsilon/[#8:1]
+  11 [  1.7443e+00 ] : vdW/Atom/rmin_half/[#8:1]
+  12 [  8.2769e-02 ] : vdW/Atom/epsilon/[#8X2H0+0:1]
+  13 [  1.6775e+00 ] : vdW/Atom/rmin_half/[#8X2H0+0:1]
+----------------------------------------------------------
+Backing up result/optimize/force_field_tagged.offxml -> result/optimize/force_field_tagged_4.offxml
+#========================================================================#
+#|  The force field has been written to the result/optimize directory.  |#
+#|    Input file with optimization parameters saved to optimize.sav.    |#
+#========================================================================#
+Wall time since calculation start: 74502.0 seconds
+#========================================================#
+#| [1;44;93m               Calculation Finished.                [0m |#
+#| [1;44;93m     ---==(  May the Force be with you!  )==---     [0m |#
+#========================================================#
+-- Force field done --
+All done
