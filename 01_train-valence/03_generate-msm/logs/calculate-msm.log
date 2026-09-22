@@ -1,0 +1,27 @@
+2026-08-19 16:35:14,914 - __main__ - INFO - Found 17 hessian calculations
+2026-08-19 16:35:14,914 - __main__ - INFO - Found 17 hessian molecules
+2026-08-19 16:35:16,653 - __main__ - INFO - Loaded 17 records and molecules
+2026-08-19 16:35:16,653 - __main__ - INFO - Filtered to 10 complete records and molecules
+2026-08-19 16:35:16,653 - __main__ - INFO - Working with 10 records and molecules
+Processing batches:   0%|          | 0/1 [00:00<?, ?it/s]
+  0%|          | 0/10 [00:00<?, ?it/s][A  0%|          | 0/10 [00:00<?, ?it/s]
+Processing batches:   0%|          | 0/1 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/alpine1/scratch/juho8819/OpenFFLipidPaper/FFTraining/train-valence/train-alkanes/openff_unconstrained_2.3.0_ashgc/openff_unconstrained-2.3.0-ashgc-alkane-valence-filtered/03_generate-msm/calculate-msm.py", line 251, in <module>
+    main()
+    ~~~~^^
+  File "/projects/juho8819/software/anaconda/envs/ash-sage-refit-2/lib/python3.13/site-packages/click/core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/projects/juho8819/software/anaconda/envs/ash-sage-refit-2/lib/python3.13/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "/projects/juho8819/software/anaconda/envs/ash-sage-refit-2/lib/python3.13/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/juho8819/software/anaconda/envs/ash-sage-refit-2/lib/python3.13/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "/gpfs/alpine1/scratch/juho8819/OpenFFLipidPaper/FFTraining/train-valence/train-alkanes/openff_unconstrained_2.3.0_ashgc/openff_unconstrained-2.3.0-ashgc-alkane-valence-filtered/03_generate-msm/calculate-msm.py", line 238, in main
+    result = calculate_parameters_single(entry, record, molecule)
+  File "/gpfs/alpine1/scratch/juho8819/OpenFFLipidPaper/FFTraining/train-valence/train-alkanes/openff_unconstrained_2.3.0_ashgc/openff_unconstrained-2.3.0-ashgc-alkane-valence-filtered/03_generate-msm/calculate-msm.py", line 86, in calculate_parameters_single
+    from qubekit.molecules import Ligand
+ModuleNotFoundError: No module named 'qubekit'

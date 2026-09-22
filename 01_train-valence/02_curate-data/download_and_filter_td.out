@@ -1,0 +1,16 @@
+Wed Aug 19 15:41:05 MDT 2026
+bgpu-shirts2.rc.int.colorado.edu
+Number of core TD records after download: 295
+Number of core entries: 35
+Number of unique entries: 35
+Final coverage from main code
+   t17:   17 /   17 records
+   t20:   17 /   17 records
+    t4:   15 /   15 records
+    t3:   17 /   17 records
+   t45:    1 /    1 records
+    t2:    5 /    5 records
+   t18:   11 /   11 records
+    t1:    6 /    6 records
+Saved to output/torsion-training-set.json
+Wed Aug 19 15:44:49 MDT 2026

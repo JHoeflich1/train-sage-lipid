@@ -1,0 +1,15 @@
+Wed Aug 19 15:56:21 MDT 2026
+bgpu-shirts1.rc.int.colorado.edu
+Loading dataset from output/optimization-training-set-full-alkane-ene.json
+Filtered to 76 user-specified records.
+Saved filtered dataset to output/optimization-training-set.json
+Final coverage from main code
+    t4:   72 /   72 records
+    b1:   73 /   73 records
+    t2:   69 /   69 records
+    t3:   73 /   73 records
+    a2:   76 /   76 records
+   b84:   76 /   76 records
+    a1:   73 /   73 records
+Wrote parameter SMIRKS and counts to output/training-valence-smirks.json
+Wed Aug 19 15:56:55 MDT 2026
